@@ -10,7 +10,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ('id', 'text', 'author', 'image', 'pub_date', 'group')
         read_only_fields = ['author']
 
 
@@ -18,7 +18,7 @@ class GroupSerializer(serializers.ModelSerializer):
     """Сериализатор модели групп."""
     class Meta:
         model = Group
-        fields = '__all__'
+        fields = ('id', 'title', 'slug', 'description')
 
 
 class CommentSerializer(serializers.ModelSerializer):

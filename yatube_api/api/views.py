@@ -21,7 +21,6 @@ class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     """Вьюсет получения данных групп пользователей."""
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    permission_classes = [IsAuthenticated]
 
 
 class CommentViewSet(viewsets.ModelViewSet):
@@ -32,7 +31,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Метод выбора всех комментариев по нужному посту."""
         post = get_object_or_404(Post, pk=self.kwargs.get('post_id'))
-        return post.comments
+        return post.comments.all()
 
     def perform_create(self, serializer):
         """Метод создания нового комментария по нужному посту."""
